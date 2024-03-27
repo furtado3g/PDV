@@ -20,5 +20,4 @@ class Clients extends Model
     protected $hidden = [
         'created_at',
     ];
-
 }

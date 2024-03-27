@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use \App\Models\Clients;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -19,7 +20,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/clients', function () {
-    return Inertia::render('Clients');
+    return Inertia::render('Clients',[
+        'clients' => Clients::all()
+    ]);
 })->middleware(['auth', 'verified'])->name('clients');
 
 Route::middleware('auth')->group(function () {
