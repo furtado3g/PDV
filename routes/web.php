@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientsContoller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,16 @@ Route::get('/clients', function () {
         'clients' => Clients::all()
     ]);
 })->middleware(['auth', 'verified'])->name('clients');
+
+Route::get('/clients/create', function () {
+    return Inertia::render('ClientForm');
+})->middleware(['auth', 'verified'])->name('clients.create');
+
+Route::post('/clients/create', function () {
+    $request = request();
+    $clients = new ClientsContoller();
+    return $clients->store($request);
+})->middleware(['auth', 'verified'])->name('clients.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -59,9 +59,7 @@ export default function Clients({ auth, clients }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Dashboard
-                </h2>
+                <></>
             }
         >
             <Head title="Clients" />
@@ -70,6 +68,13 @@ export default function Clients({ auth, clients }) {
                     <div className="dark:bg-slate-700 bg-slate-200 dark:text-green-500 text-green-600 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-2xl font-extrabold">
                             Clientes
+                        </div>
+                        <div className="w-1/3 ml-auto">
+                            <PrimaryButton
+                                href={route("clients.create")}
+                            >
+                                Cadastrar
+                            </PrimaryButton>
                         </div>
                         <div className="w-11/12 mx-auto">
                             <div className="w-full flex">
