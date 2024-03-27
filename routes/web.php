@@ -27,7 +27,9 @@ Route::get('/clients', function () {
 })->middleware(['auth', 'verified'])->name('clients');
 
 Route::get('/clients/create', function () {
-    return Inertia::render('ClientForm');
+    return Inertia::render('ClientForm',[
+        'formUrl' => route('clients.store')
+    ]);
 })->middleware(['auth', 'verified'])->name('clients.create');
 
 Route::post('/clients/create', function () {

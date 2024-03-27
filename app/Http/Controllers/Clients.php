@@ -28,4 +28,8 @@ class ClientsContoller extends Controller
         $client->save();
         return redirect('/clients');
     }
+
+    public function update(Request $request){
+
+    }
 }

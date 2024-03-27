@@ -1,12 +1,12 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
-export default function ClientForm({ auth, client = {} }) {
+export default function ClientForm({ auth, client = {} , formUrl = null}) {
     return (
         <AuthenticatedLayout user={auth.user} header={<></>}>
             <Head title="Formulário Clientes" />
             <div className="py-12">
-                <form action={route("clients.store")} method="post">
+                <form action={formUrl} method="post">
                     <input
                         type="hidden"
                         name="_token"
