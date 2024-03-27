@@ -8,7 +8,7 @@ export default function SideBar() {
                 Clientes
             </div>
             <div className="w-full m-1 px-4 py-3 font-bold hover:bg-slate-800 hover:rounded-l-full">
-                Produtos
+                Produtos 
             </div>
             <div className="w-full m-1 px-4 py-3 font-bold hover:bg-slate-800 hover:rounded-l-full">
                 Vendas
