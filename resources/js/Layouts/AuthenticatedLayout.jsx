@@ -1,7 +1,7 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-// import SideBar from '@/Components/Sidebar';
+import SideBar from '../Components/SideBar';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
@@ -147,7 +147,7 @@ export default function Authenticated({ user, header, children }) {
                     </div>
                 </div>
             </nav>
-            {/* <SideBar /> */}
+            <SideBar />
 
             <main className="sm:w-2/3 md:w-3/4 lg:w-4/5 xl:w-5/6 ml-auto">
                 {children}
