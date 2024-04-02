@@ -33,7 +33,9 @@ Route::get('/clients/create', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('clients.create');
 
-Route::post('/clients/create', [ClientsContoller::class, 'store'])->middleware(['auth', 'verified'])->name('clients.store');
+Route::middleware('auth')->group(function () {
+    Route::post('/clients/create', [ClientsContoller::class, 'store'])->name('clients.store');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
