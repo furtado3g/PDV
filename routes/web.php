@@ -28,15 +28,12 @@ Route::get('/clients', function () {
 
 Route::get('/clients/create', function () {
     return Inertia::render('ClientForm',[
-        'formUrl' => route('clients.store')
+        'formUrl' => '/clients/create',
+         'csrfToken' => csrf_token(),
     ]);
 })->middleware(['auth', 'verified'])->name('clients.create');
 
-Route::post('/clients/create', function () {
-    $request = request();
-    $clients = new ClientsContoller();
-    return $clients->store($request);
-})->middleware(['auth', 'verified'])->name('clients.store');
+Route::post('/clients/create', [ClientsContoller::class, 'store'])->middleware(['auth', 'verified'])->name('clients.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

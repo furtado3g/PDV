@@ -56,25 +56,25 @@ export default function Clients({ auth, clients }) {
     };
 
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={
-                <></>
-            }
-        >
+        <AuthenticatedLayout user={auth.user} header={<></>}>
             <Head title="Clients" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="dark:bg-slate-700 bg-slate-200 dark:text-green-500 text-green-600 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-2xl font-extrabold">
-                            Clientes
-                        </div>
-                        <div className="w-1/3 ml-auto">
-                            <PrimaryButton
-                                href={route("clients.create")}
-                            >
-                                Cadastrar
-                            </PrimaryButton>
+                        <div className="w-full grid grid-cols-3">
+                            <div className="p-6 text-2xl font-extrabold col-span-2">
+                                Clientes
+                            </div>
+                            <div className="w-full p-6 col-span-1 flex justify-end">
+                                <PrimaryButton
+                                    onClick={(e) =>
+                                        (location.href =
+                                            route("clients.create"))
+                                    }
+                                >
+                                    Cadastrar
+                                </PrimaryButton>
+                            </div>
                         </div>
                         <div className="w-11/12 mx-auto">
                             <div className="w-full flex">

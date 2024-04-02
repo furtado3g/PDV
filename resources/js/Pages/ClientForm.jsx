@@ -1,17 +1,14 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, usePage } from "@inertiajs/react";
-export default function ClientForm({ auth, client = {} , formUrl = null}) {
+import { Head } from "@inertiajs/react";
+export default function ClientForm({ auth, client = {}, formUrl = null, ...props }) {
+    const { csrfToken } = props;
     return (
         <AuthenticatedLayout user={auth.user} header={<></>}>
             <Head title="Formulário Clientes" />
             <div className="py-12">
                 <form action={formUrl} method="post">
-                    <input
-                        type="hidden"
-                        name="_token"
-                        value={usePage().props.csrf}
-                    />
+                    <input type="hidden" name="_token" value={csrfToken} />
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className="dark:bg-slate-700 bg-slate-200 dark:text-green-500 text-green-600 overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="p-6 text-2xl font-extrabold">

@@ -11,7 +11,7 @@ class ClientsContoller extends Controller
         return view('clients');
     }
 
-    public function store(Request $request){
+    static public function store(Request $request){
         $request->validate([
             'name' => 'required',
             'cgc' => 'required',
