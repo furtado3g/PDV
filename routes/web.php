@@ -20,20 +20,20 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/clients', function () {
-    return Inertia::render('Clients',[
-        'clients' => Clients::all()
-    ]);
-})->middleware(['auth', 'verified'])->name('clients');
-
-Route::get('/clients/create', function () {
-    return Inertia::render('ClientForm',[
-        'formUrl' => '/clients/create',
-         'csrfToken' => csrf_token(),
-    ]);
-})->middleware(['auth', 'verified'])->name('clients.create');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/clients', function () {
+        return Inertia::render('Clients',[
+            'clients' => Clients::all()
+        ]);
+    })->name('clients');
+
+    Route::get('/clients/create', function () {
+        return Inertia::render('ClientForm',[
+            'formUrl' => '/clients/create',
+             'csrfToken' => csrf_token(),
+        ]);
+    })->name('clients.create');
     Route::post('/clients/create', [ClientsContoller::class, 'store'])->name('clients.store');
 });
 
