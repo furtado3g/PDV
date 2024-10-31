@@ -71,4 +71,12 @@ class ClientsController extends Controller
         $client->save();
         return redirect('/clients');
     }
+
+    public function destroy(int $id): \Illuminate\Http\Response
+    {
+        $client = ClientsModel::query()->findOrFail($id);
+        $nome = $client->nome;
+        $client->delete();
+        return response('{"message": "' . $nome . ' excluido com sucesso"}')->header('Content-Type', 'application/json');
+    }
 }

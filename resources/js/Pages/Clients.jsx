@@ -2,14 +2,15 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import {Head} from "@inertiajs/react";
 import {useState} from "react";
+import DangerButton from "@/Components/DangerButton.jsx";
 
-export default function Clients({auth, clients}) {
+export default function Clients({auth, clients,...props}) {
     const [filteredClients, setFilteredClients] = useState(clients);
     const [page, setPage] = useState(0);
     const perPageList = [5, 10, 15, 20, 25];
     const [perPage, setPerPage] = useState(perPageList[0]);
     const [search, setSearch] = useState("");
-
+    const { csrfToken } = props;
     const handleTableSearch = (event) => {
         setPage(0);
         setFilteredClients(
@@ -54,6 +55,22 @@ export default function Clients({auth, clients}) {
             }
         }
     };
+
+    const handleWithDeleteButtonCLicked = async (id) =>{
+        const data = {
+            url: `/clients/${id}`,
+            options: {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            }
+        }
+
+        const req = await (await fetch(data.url,data.options)).json()
+
+        location.reload()
+    }
 
     return (
         <AuthenticatedLayout user={auth.user} header={<></>}>
@@ -136,6 +153,11 @@ export default function Clients({auth, clients}) {
                                             >
                                                 Editar
                                             </PrimaryButton>
+                                            <DangerButton
+                                                onClick={async ()=> await handleWithDeleteButtonCLicked(client.id)}
+                                            >
+                                                Excluir
+                                            </DangerButton>
                                         </td>
                                     </tr>
                                 ))}
