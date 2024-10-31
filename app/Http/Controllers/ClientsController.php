@@ -49,7 +49,7 @@ class ClientsController extends Controller
         $client = ClientsModel::query()->findOrFail($id);
         return Inertia::render('ClientsForm', [
             'client' => $client,
-            'formUrl' => '/clients/create',
+            'formUrl' => '/clients/'.$id.'/update',
             'csrfToken' => csrf_token(),
         ]);
     }
