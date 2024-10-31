@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\ClientsContoller;
+use App\Http\Controllers\Clients;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use \App\Models\Clients;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -22,11 +22,7 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/clients', function () {
-        return Inertia::render('Clients',[
-            'clients' => Clients::all()
-        ]);
-    })->name('clients');
+    Route::get('/clients', [Clients::class, 'index'])->name('clients');
 
     Route::get('/clients/create', function () {
         return Inertia::render('ClientForm',[
@@ -34,7 +30,7 @@ Route::middleware('auth')->group(function () {
              'csrfToken' => csrf_token(),
         ]);
     })->name('clients.create');
-    Route::post('/clients/create', [ClientsContoller::class, 'store'])->name('clients.store');
+    Route::post('/clients/create', [Clients::class, 'store'])->name('clients.store');
 });
 
 Route::middleware('auth')->group(function () {

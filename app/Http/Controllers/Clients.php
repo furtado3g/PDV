@@ -1,24 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Models\Clients;
-class ClientsContoller extends Controller
+use App\Models\Clients as ClientsModel;
+use Inertia\Inertia;
+
+class Clients extends Controller
 {
 
-    public function index()
+    public function index(): \Inertia\Response
     {
-        return view('clients');
+        return Inertia::render('Clients', [
+            'clients' => ClientsModel::all(),
+        ]);
     }
 
-    static public function store(Request $request){
+    static public function store(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    {
         $request->validate([
             'name' => 'required',
             'cgc' => 'required',
             'address' => 'required',
             'phone' => 'required',
         ]);
-        $client = new Clients();
+        $client = new ClientsModel();
         $client->name = $request->name;
         $client->email = $request->email;
         $client->cgc = $request->cgc;
@@ -29,7 +35,8 @@ class ClientsContoller extends Controller
         return redirect('/clients');
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
     }
 }
