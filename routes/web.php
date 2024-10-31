@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Clients;
+use App\Http\Controllers\ClientsController as Clients;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
         ]);
     })->name('clients.create');
     Route::post('/clients/create', [Clients::class, 'store'])->name('clients.store');
+
+    Route::get('/clients/{client}/edit', [Clients::class, 'edit'])->name('clients.edit');
+    Route::patch('/clients/{client}', [Clients::class, 'update'])->name('clients.update');
 });
 
 Route::middleware('auth')->group(function () {

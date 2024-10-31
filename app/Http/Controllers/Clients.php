@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Clients as ClientsModel;
 use Inertia\Inertia;
 
-class Clients extends Controller
+class ClientsController extends Controller
 {
 
     public function index(): \Inertia\Response

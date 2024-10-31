@@ -56,7 +56,7 @@ export default function ClientForm({ auth, client = {}, formUrl = null, ...props
                                     />
                                 </div>
                                 <div className="w-full mx-auto pb-2 md:col-span-2">
-                                    <label htmlFor="cgc">Enderesso</label>
+                                    <label htmlFor="cgc">Endereço</label>
                                     <input
                                         type="text"
                                         name="address"
