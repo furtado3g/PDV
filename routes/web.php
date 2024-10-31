@@ -24,12 +24,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/clients', [Clients::class, 'index'])->name('clients');
 
-    Route::get('/clients/create', function () {
-        return Inertia::render('ClientForm',[
-            'formUrl' => '/clients/create',
-             'csrfToken' => csrf_token(),
-        ]);
-    })->name('clients.create');
+    Route::get('/clients/create', [Clients::class,'create'])->name('clients.create');
     Route::post('/clients/create', [Clients::class, 'store'])->name('clients.store');
 
     Route::get('/clients/{client}/edit', [Clients::class, 'edit'])->name('clients.edit');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use http\Client;
 use Illuminate\Http\Request;
 use App\Models\Clients as ClientsModel;
 use Inertia\Inertia;
@@ -33,6 +34,24 @@ class ClientsController extends Controller
         $client->active = true;
         $client->save();
         return redirect('/clients');
+    }
+
+    public function create(): \Inertia\Response
+    {
+        return Inertia::render('ClientForm', [
+            'formUrl' => '/clients/create',
+            'csrfToken' => csrf_token(),
+        ]);
+    }
+
+    public function edit(int $id): \Inertia\Response
+    {
+        $client = ClientsModel::query()->findOrFail($id);
+        return Inertia::render('ClientsForm', [
+            'client' => $client,
+            'formUrl' => '/clients/create',
+            'csrfToken' => csrf_token(),
+        ]);
     }
 
     public function update(Request $request)

@@ -1,8 +1,9 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
-import { useState } from "react";
-export default function Clients({ auth, clients }) {
+import {Head} from "@inertiajs/react";
+import {useState} from "react";
+
+export default function Clients({auth, clients}) {
     const [filteredClients, setFilteredClients] = useState(clients);
     const [page, setPage] = useState(0);
     const perPageList = [5, 10, 15, 20, 25];
@@ -10,7 +11,6 @@ export default function Clients({ auth, clients }) {
     const [search, setSearch] = useState("");
 
     const handleTableSearch = (event) => {
-        setSearch(event.target.value);
         setPage(0);
         setFilteredClients(
             clients
@@ -57,10 +57,11 @@ export default function Clients({ auth, clients }) {
 
     return (
         <AuthenticatedLayout user={auth.user} header={<></>}>
-            <Head title="Clients" />
+            <Head title="Clients"/>
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="dark:bg-slate-700 bg-slate-200 dark:text-green-500 text-green-600 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div
+                        className="dark:bg-slate-700 bg-slate-200 dark:text-green-500 text-green-600 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="w-full grid grid-cols-3">
                             <div className="p-6 text-2xl font-extrabold col-span-2">
                                 Clientes
@@ -103,70 +104,86 @@ export default function Clients({ auth, clients }) {
                                     />
                                 </div>
                             </div>
-                            <table className="w-full  dark:bg-slate-700 bg-slate-300 rounded-2xl text-lg font-bold mx-auto  mb-6">
+                            <table
+                                className="w-full  dark:bg-slate-700 bg-slate-300 rounded-2xl text-lg font-bold mx-auto  mb-6">
                                 <thead>
-                                    <tr>
-                                        <th className="p-2 text-center">#</th>
-                                        <th className="p-2 text-left">Nome</th>
-                                        <th className="p-2 text-left">Email</th>
-                                        <th className="p-2 text-center">
-                                            Ações
-                                        </th>
-                                    </tr>
+                                <tr>
+                                    <th className="p-2 text-center">#</th>
+                                    <th className="p-2 text-left">Nome</th>
+                                    <th className="p-2 text-left">Email</th>
+                                    <th className="p-2 text-center">
+                                        Ações
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredClients.map((client, index) => (
-                                        <tr key={index}>
-                                            <td className="p-2 text-center">
-                                                {client.id}
-                                            </td>
-                                            <td className="p-2 text-left">
-                                                {client.name}
-                                            </td>
-                                            <td className="p-2 text-left">
-                                                {client.email}
-                                            </td>
-                                            <td className="p-2 text-center">
-                                                <PrimaryButton
-                                                    onClick={() =>
-                                                        alert("Edit")
-                                                    }
-                                                >
-                                                    Editar
-                                                </PrimaryButton>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                {filteredClients.map((client, index) => (
+                                    <tr key={index}>
+                                        <td className="p-2 text-center">
+                                            {client.id}
+                                        </td>
+                                        <td className="p-2 text-left">
+                                            {client.name}
+                                        </td>
+                                        <td className="p-2 text-left">
+                                            {client.email}
+                                        </td>
+                                        <td className="p-2 text-center">
+                                            <PrimaryButton
+                                                onClick={() =>
+                                                    location.href = `/clients/${client.id}/edit`
+                                                }
+                                            >
+                                                Editar
+                                            </PrimaryButton>
+                                        </td>
+                                    </tr>
+                                ))}
                                 </tbody>
                             </table>
-                            <div className="w-full flex">
-                                <div className="w-1/3 md:w-1/6 p-2 ml-auto text-center flex items-center justify-center">
-                                    <button
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+                            <div className="w-full flex justify-end pb-4">
+                                <div className="inline-flex justify-center gap-1 ">
+                                    <a
                                         onClick={() => handleTablePage("prev")}
+                                        className="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
                                     >
-                                        Anterior
-                                    </button>
-                                </div>
-                                <div className="w-1/3 md:w-1/6 p-2 text-center flex items-center justify-center">
-                                    <span className="text-xl w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 cursor-not-allowed">
-                                        {page + 1} de{" "}
-                                        {Math.ceil(clients.length / perPage) ===
-                                        0
-                                            ? 1
-                                            : Math.ceil(
-                                                  clients.length / perPage
-                                              )}
-                                    </span>
-                                </div>
-                                <div className="w-1/3 md:w-1/6 p-2 text-center flex items-center justify-center">
-                                    <button
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+                                        <span className="sr-only">Anterior</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="size-3" viewBox="0 0 20 20" fill="currentColor">
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                    </a>
+
+                                    <div>
+                                        <label htmlFor="PaginationPage" className="sr-only">Page</label>
+
+                                        <input
+                                            type="number"
+                                            className="h-8 w-12 rounded border border-gray-100 bg-white p-0 text-center text-xs font-medium text-gray-900 [-moz-appearance:_textfield] dark:border-gray-800 dark:bg-gray-900 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                                            min="1"
+                                            value={page + 1}
+                                            id="PaginationPage"
+                                        />
+                                    </div>
+
+                                    <a
                                         onClick={() => handleTablePage("next")}
+                                        className="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
                                     >
-                                        Proximo
-                                    </button>
+                                        <span className="sr-only">Proxima</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="size-3" viewBox="0 0 20 20" fill="currentColor">
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                    </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
