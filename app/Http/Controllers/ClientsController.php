@@ -17,7 +17,7 @@ class ClientsController extends Controller
         ]);
     }
 
-    static public function store(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    static public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'name' => 'required',
@@ -47,15 +47,28 @@ class ClientsController extends Controller
     public function edit(int $id): \Inertia\Response
     {
         $client = ClientsModel::query()->findOrFail($id);
-        return Inertia::render('ClientsForm', [
+        return Inertia::render('ClientForm', [
             'client' => $client,
-            'formUrl' => '/clients/'.$id.'/update',
+            'formUrl' => '/clients/' . $id . '/update',
             'csrfToken' => csrf_token(),
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
+        $request->validate([
+            'name' => 'required',
+            'cgc' => 'required',
+            'address' => 'required',
+            'phone' => 'required'
+        ]);
 
+        $client = ClientsModel::query()->findOrFail($id);
+        $client->name = $request->name;
+        $client->email = $request->email;
+        $client->address = $request->address;
+        $client->phone = $request->phone;
+        $client->save();
+        return redirect('/clients');
     }
 }
