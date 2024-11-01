@@ -34,7 +34,7 @@ export default function SideBar() {
                         : "hover:bg-slate-800 hover:rounded-l-full"
                 }`}
             >
-                Produtos
+                <a href={route("products.index")}>Produtos</a>
             </div>
             <div
                 className={`w-full m-1 px-4 py-3 font-bold ${
