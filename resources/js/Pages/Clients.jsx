@@ -74,7 +74,7 @@ export default function Clients({auth, clients,...props}) {
 
     return (
         <AuthenticatedLayout user={auth.user} header={<></>}>
-            <Head title="Clients"/>
+            <Head title="Clientes"/>
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div
@@ -129,7 +129,7 @@ export default function Clients({auth, clients,...props}) {
                                     <th className="p-2 text-left">Nome</th>
                                     <th className="p-2 text-left">Email</th>
                                     <th className="p-2 text-center">
-                                        Ações
+                                        Ações
                                     </th>
                                 </tr>
                                 </thead>
@@ -180,7 +180,7 @@ export default function Clients({auth, clients,...props}) {
                                     </a>
 
                                     <div>
-                                        <label htmlFor="PaginationPage" className="sr-only">Page</label>
+                                        <label htmlFor="PaginationPage" className="sr-only">Página</label>
 
                                         <input
                                             type="number"
@@ -195,7 +195,7 @@ export default function Clients({auth, clients,...props}) {
                                         onClick={() => handleTablePage("next")}
                                         className="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
                                     >
-                                        <span className="sr-only">Proxima</span>
+                                        <span className="sr-only">Próxima</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="size-3" viewBox="0 0 20 20" fill="currentColor">
                                             <path
                                                 fillRule="evenodd"

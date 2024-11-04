@@ -14,4 +14,15 @@ class ProductsController extends Controller
             'products' => ProductModel::all()
         ]);
     }
+
+    public function create(){
+        return Inertia::render('ProductsForm',[
+            'product' => null
+        ]);
+    }
+
+    public function store(Request $request){
+        $product = ProductModel::create($request->all());
+        return redirect()->route('products.index');
+    }
 }

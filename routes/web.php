@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/clients/{client}', [Clients::class, 'destroy'])->name('clients.destroy');
     //products
     Route::get('/products', [Products::class,'index'])->name('products.index');
+    Route::get('/products/create', [Products::class,'create'])->name('products.create');
+    Route::post('/products/create', [Products::class,'store'])->name('products.store');
 });
 
 

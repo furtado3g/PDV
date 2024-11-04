@@ -1,4 +1,3 @@
-
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
@@ -13,7 +12,7 @@ export default function Products({ auth, products }) {
     );
 
     const handleDelete = (id) => {
-        if (confirm('Are you sure you want to delete this product?')) {
+        if (confirm('Tem certeza que deseja excluir este produto?')) {
             // router.delete(route('products.destroy', id));
         }
     };
@@ -21,50 +20,50 @@ export default function Products({ auth, products }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Products</h2>}
+            header={<h2 className="font-semibold text-xl text-slate-800 leading-tight">Produtos</h2>}
         >
-            <Head title="Products" />
+            <Head title="Produtos" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
+                    <div className="bg-slate-900 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div className="p-6 text-slate-900">
                             <div className="flex justify-between items-center mb-6">
                                 <div className="flex items-center">
                                     <input
                                         type="text"
-                                        placeholder="Search products..."
-                                        className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        placeholder="Pesquisar produtos..."
+                                        className="text-green-400 placeholder:text-green-400 border-green-400 bg-slate-800 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm"
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
                                     />
                                 </div>
                                 <Link
-                                    // href={route('products.create')}
-                                    className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700"
+                                    href={route('products.create')}
+                                    className="px-4 py-2 bg-slate-800 text-green-400 rounded-md hover:bg-slate-700"
                                 >
-                                    Add Product
+                                    Adicionar Produto
                                 </Link>
                             </div>
 
-                            <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="bg-gray-50">
+                            <table className="min-w-full divide-y divide-slate-200">
+                                <thead className="bg-slate-800">
                                     <tr>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Name
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-green-400 uppercase tracking-wider">
+                                            Nome
                                         </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Description
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-green-400 uppercase tracking-wider">
+                                            Descrição
                                         </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Price
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-green-400 uppercase tracking-wider">
+                                            Preço
                                         </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Actions
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-green-400 uppercase tracking-wider">
+                                            Ações
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
+                                <tbody className="bg-slate-600 divide-y divide-slate-200">
                                     {filteredProducts.map((product) => (
                                         <tr key={product.id}>
                                             <td className="px-6 py-4 whitespace-nowrap">
@@ -74,19 +73,19 @@ export default function Products({ auth, products }) {
                                                 {product.description}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                ${product.price}
+                                                R${product.price}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <Link
                                                     // href={route('products.edit', product.id)}
                                                     className="text-indigo-600 hover:text-indigo-900 mr-4"
                                                 >
-                                                    Edit
+                                                    Editar
                                                 </Link>
                                                 <DangerButton
-                                                    // onClick={() => handleDelete(product.id)}
+                                                // onClick={() => handleDelete(product.id)}
                                                 >
-                                                    Delete
+                                                    Excluir
                                                 </DangerButton>
                                             </td>
                                         </tr>
