@@ -3,7 +3,7 @@
 use App\Http\Controllers\ClientsController as Clients;
 use App\Http\Controllers\ProductsController as Products;
 use App\Http\Controllers\ProfileController;
-use App\Models\Product;
+use App\Http\Controllers\ProductGroupController as ProductGroup;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,6 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/products', [Products::class,'index'])->name('products.index');
     Route::get('/products/create', [Products::class,'create'])->name('products.create');
     Route::post('/products/create', [Products::class,'store'])->name('products.store');
+
+    //products groups
+    Route::get('/products/groups', [ProductGroup::class,'index'])->name('products.groups');
+    Route::get('/products/groups/create', [ProductGroup::class,'create'])->name('products.groups.create');
 });
 
 

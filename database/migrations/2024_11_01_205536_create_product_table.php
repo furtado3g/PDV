@@ -19,7 +19,9 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('image')->nullable();
             $table->boolean('active')->default(true);
-            
+            $table->string('barcode')->unique();
+            $table->foreignId('product_group_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
