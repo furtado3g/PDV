@@ -77,7 +77,7 @@ export default function Products({ auth, products }) {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <Link
-                                                    // href={route('products.edit', product.id)}
+                                                    href={route('products.edit', product.id)}
                                                     className="text-indigo-600 hover:text-indigo-900 mr-4"
                                                 >
                                                     Editar

@@ -17,7 +17,8 @@ class ProductsController extends Controller
 
     public function create(){
         return Inertia::render('ProductsForm',[
-            'product' => null
+            'product' => null,
+            'productGroups' => \App\Models\ProductGroup::all()
         ]);
     }
 

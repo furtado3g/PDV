@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/products/groups/create', [ProductGroup::class,'store'])->name('products.groups.store');
     Route::get('/products/groups/{productGroup}/edit', [ProductGroup::class,'show'])->name('products.groups.edit');
     Route::post('/products/groups/{productGroup}/edit', [ProductGroup::class,'edit'])->name('products.groups.update');
+    Route::delete('/products/groups/{productGroup}/edit', [ProductGroup::class,'destroy'])->name('products.groups.destroy');
 });
 
 

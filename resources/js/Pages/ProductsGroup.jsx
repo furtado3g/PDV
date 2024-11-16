@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import { Table, TextInput, Pagination } from "flowbite-react";
 import { FaPlus, FaSearch } from "react-icons/fa";
+import { router } from "@inertiajs/react";
 
 export default function ProductsGroup({ auth, productGroups }) {
 
@@ -12,7 +13,7 @@ export default function ProductsGroup({ auth, productGroups }) {
 
     function handleDeleteButtonClick(id) {
         if (confirm("Tem certeza que deseja excluir este grupo de produtos?")) {
-            delete(`/products/groups/${id}`);
+            router.delete(route('products.groups.destroy', id));
         }
     }
     return (

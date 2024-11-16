@@ -16,6 +16,7 @@ class Product extends Model
         'image',
         'category',
         'stock',
-        'barcode'
+        'barcode',
+        'product_group_id'
     ];
 }

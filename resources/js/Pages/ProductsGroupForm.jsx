@@ -4,15 +4,15 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 
 export default function ProductsGroupForm({ auth, productGroup }) {
-    const { data, setData, post, processing, errors } = useForm({
-        name: productGroup.name ?? '',
-        description: productGroup.description ?? '',
-        active: productGroup.active ?? true
+    const { data, setData, post, processing, errors } = useForm( productGroup  ?? {
+        name: '',
+        description: '',
+        active:  true
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (productGroup.id) {
+        if (productGroup) {
             post(route('products.groups.update', productGroup.id));
         } else {
             post(route('products.groups.store'));

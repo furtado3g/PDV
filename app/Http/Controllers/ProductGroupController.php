@@ -53,7 +53,6 @@ class ProductGroupController extends Controller
      */
     public function edit(Request $request,productGroup $productGroup)
     {
-        echo $productGroup->id;
         $productGroup->update($request->all());
         return redirect()->route('products.groups');
     }
