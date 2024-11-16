@@ -23,7 +23,9 @@ class ProductGroupController extends Controller
      */
     public function create()
     {
-        //
+       return Inertia::render('ProductsGroupForm',[
+        'productGroup' => null
+       ]);
     }
 
     /**
@@ -31,7 +33,8 @@ class ProductGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productGroup = productGroup::create($request->all());
+        return redirect()->route('products.groups');
     }
 
     /**
@@ -39,23 +42,20 @@ class ProductGroupController extends Controller
      */
     public function show(productGroup $productGroup)
     {
-        //
+        $data = productGroup::find($productGroup->id);
+        return Inertia::render('ProductsGroupForm',[
+            'productGroup' => $data
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(productGroup $productGroup)
+    public function edit(Request $request,productGroup $productGroup)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, productGroup $productGroup)
-    {
-        //
+        echo $productGroup->id;
+        $productGroup->update($request->all());
+        return redirect()->route('products.groups');
     }
 
     /**
@@ -63,6 +63,7 @@ class ProductGroupController extends Controller
      */
     public function destroy(productGroup $productGroup)
     {
-        //
+        $productGroup->delete();
+        return redirect()->route('products.groups');
     }
 }

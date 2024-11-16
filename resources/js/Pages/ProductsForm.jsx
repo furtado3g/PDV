@@ -17,6 +17,20 @@ export default function ProductsForm() {
     return (
         <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
             <div className="mb-4">
+                <label htmlFor="barcode" className="block text-gray-700 font-bold mb-2">
+                    Cod. Barras
+                </label>
+                <input
+                    type="number"
+                    id="barcode"
+                    value={data.barcode}
+                    onChange={e => setData('barcode', e.target.value)}
+                    className="w-full px-3 py-2 border rounded-lg"
+                />
+                {errors.barcode && <div className="text-red-500">{errors.barcode}</div>}
+            </div>
+            
+            <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
                     Nome do Produto
                 </label>

@@ -5,6 +5,16 @@ import { Table, TextInput, Pagination } from "flowbite-react";
 import { FaPlus, FaSearch } from "react-icons/fa";
 
 export default function ProductsGroup({ auth, productGroups }) {
+
+    function handleEditButtonClick(id) {
+        window.location.href = `/products/groups/${id}/edit`;
+    }
+
+    function handleDeleteButtonClick(id) {
+        if (confirm("Tem certeza que deseja excluir este grupo de produtos?")) {
+            delete(`/products/groups/${id}`);
+        }
+    }
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -74,10 +84,10 @@ export default function ProductsGroup({ auth, productGroups }) {
                                             </Table.Cell>
                                             <Table.Cell>
                                                 <div className="flex gap-2">
-                                                    <button className="text-blue-600 hover:text-blue-900">
+                                                    <button className="text-blue-600 hover:text-blue-900" onClick={() => {handleEditButtonClick(group.id)}}>
                                                         Editar
                                                     </button>
-                                                    <button className="text-red-600 hover:text-red-900">
+                                                    <button className="text-red-600 hover:text-red-900" onClick={() => {handleDeleteButtonClick(group.id)}}>
                                                         Excluir
                                                     </button>
                                                 </div>

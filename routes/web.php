@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function () {
     //products groups
     Route::get('/products/groups', [ProductGroup::class,'index'])->name('products.groups');
     Route::get('/products/groups/create', [ProductGroup::class,'create'])->name('products.groups.create');
+    Route::post('/products/groups/create', [ProductGroup::class,'store'])->name('products.groups.store');
+    Route::get('/products/groups/{productGroup}/edit', [ProductGroup::class,'show'])->name('products.groups.edit');
+    Route::post('/products/groups/{productGroup}/edit', [ProductGroup::class,'edit'])->name('products.groups.update');
 });
 
 
